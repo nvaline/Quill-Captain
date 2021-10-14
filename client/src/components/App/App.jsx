@@ -2,13 +2,13 @@ import React, { useState, useEffect, lazy, Suspense } from 'react';
 import axios from 'axios';
 
 import Overview from '../Overview/Overview.jsx';
-// const Related_Items_Comparison = lazy(() => import('../Related_Items_Comparison/Related_Items_Comparison.jsx'));
-// const RatingsAndReviews = lazy(() => import('../Ratings&Reviews/Ratings&Reviews.jsx'));
-// const QandA = lazy(() => import('../Q&A/Q&A.jsx'));
+const Related_Items_Comparison = lazy(() => import('../Related_Items_Comparison/Related_Items_Comparison.jsx'));
+const RatingsAndReviews = lazy(() => import('../Ratings&Reviews/Ratings&Reviews.jsx'));
+const QandA = lazy(() => import('../Q&A/Q&A.jsx'));
 import ProductContext from '../contexts/ProductContext.js';
 import StylesContext from '../contexts/StylesContext';
 import MainContainer from './styles.js';
-// import NavBar from '../NavBar/NavBar.jsx';
+import NavBar from '../NavBar/NavBar.jsx';
 
 
 const App = () => {
@@ -50,7 +50,7 @@ const App = () => {
 
   return (
     <MainContainer>
-      {/* <NavBar /> */}
+      <NavBar />
       <ProductContext.Provider value={{
         product: [product, setProduct],
         reviews: reviews,
@@ -69,13 +69,13 @@ const App = () => {
               <React.Fragment>
                 <Overview />
                 <Suspense fallback={ <div>Loading...</div> }>
-                  {/* <Related_Items_Comparison relatedProductClicked={relatedProductClicked} /> */}
+                  <Related_Items_Comparison relatedProductClicked={relatedProductClicked} />
                 </Suspense>
               </React.Fragment>
               : null
           }
         </StylesContext.Provider>
-        {/* {
+        {
           Object.keys(reviews).length ?
             <Suspense fallback={ <div>Loading...</div> }>
               <React.Fragment>
@@ -84,7 +84,7 @@ const App = () => {
               </React.Fragment>
             </Suspense>
             : null
-        } */}
+        }
       </ProductContext.Provider>
     </MainContainer>
   );
